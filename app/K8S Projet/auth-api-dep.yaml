@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: auth-api
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: auth-api
+  template:
+    metadata:
+      labels:
+        app: auth-api
+    spec:
+      containers:
+      - name: auth-api
+        image: moutchou/k8sprojet-auth-api
+        ports:
+        - containerPort: 8081  # Ensure this matches the AUTH_API_PORT
+        env:
+        - name: AUTH_API_PORT
+          value: "8081"
+        - name: USERS_API_ADDRESS
+          value: "http://users-api:8082"
+        - name: JWT_SECRET
+          value: "foo"  # Replace "foo" with the actual secret if different
+
+      
+

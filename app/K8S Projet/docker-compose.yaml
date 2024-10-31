@@ -1,0 +1,39 @@
+version: '3.8'  # (Vous pouvez envisager de le retirer si vous avez un avertissement)
+
+services:
+  users-api:
+    build:
+      context: ./users-api  # Spécifiez le contexte directement
+      dockerfile: Dockerfile  # Juste le nom, pas de suffixe
+    ports:
+      - "8083:8083"
+
+  todos-api:
+    build:
+      context: ./todos-api
+      dockerfile: Dockerfile
+    ports:
+      - "8082:8082"
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+
+  log-message-processor:
+    build:
+      context: ./log-message-processor
+      dockerfile: Dockerfile
+    ports:
+      - "5000:5000"
+
+  auth-api:
+    build:
+      context: ./auth-api
+      dockerfile: Dockerfile
+    ports:
+      - "8081:8081"
+
+
